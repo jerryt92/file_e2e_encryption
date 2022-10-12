@@ -2,6 +2,8 @@
 
 适用于没有HTTPS协议时的文件传输，如：个人家庭服务器
 
+使用SpringBoot
+
 [GitHub](https://github.com/tianjingli/file_e2e_encryption)
 
 [Gitee](https://gitee.com/tianjingli/file_e2e_encryption)
