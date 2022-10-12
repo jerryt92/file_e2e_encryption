@@ -33,11 +33,12 @@
         var file = fileList[0];
         var fileOriginalName = file.name;
         let fileReader = new FileReader();
-        fileReader.readAsBinaryString(file);
+        fileReader.readAsArrayBuffer(file);
         fileReader.onload = function () {
             // 生成一个随机的32为字符串作为对称密钥
             let key = "" + CryptoJS.MD5(URL.createObjectURL(new Blob()));
-            const encData = aesEncrypt(key, btoa(fileReader.result));
+            const encData = aesEncrypt(key, arrayBufferToBase64(fileReader.result));
+            console.log(encData.length);
             encFile = new Blob([base64ToArrayBuffer(encData)])
             uploadFile(fileOriginalName,encFile,key);
             alert("本次传输对称密钥为：" + key)

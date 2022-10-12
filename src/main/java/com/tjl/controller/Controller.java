@@ -39,7 +39,7 @@ public class Controller {
         System.out.println("文件保存路径：" + FILE_PATH);
         System.out.println("================================================================================================");
         File outFile = new File(FILE_PATH + file.getOriginalFilename());
-        FileUtils.writeByteArrayToFile(outFile, Base64.getDecoder().decode(AESUtil.aesDecrypt(file.getBytes(),key.getBytes())));
+        FileUtils.writeByteArrayToFile(outFile, Base64.getDecoder().decode(AESUtil.aesDecrypt(file.getBytes(), key.getBytes())));
         return "ok.";
     }
 }
