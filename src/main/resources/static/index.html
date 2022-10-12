@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<input type="file" id="file">
+<button onclick="encryptFile()">上传</button>
+
+<script src="./js/lib/jquery-3.6.1.min.js"></script>
+<script src="./js/lib/crypto-js.min.js"></script>
+<script src="./js/lib/jsencrypt.min.js"></script>
+<script src="./js/aes.js"></script>
+<script>
+    // 从某可靠出获得服务端公钥（本demo为演示而直接从服务端获取）
+    let publicKey = $.ajax({
+        url: "/get-public-key",
+        dataType: "String",
+        async: false
+    }).responseText
+
+    function encryptFile() {
+        //获得文件列表，注意这里不是数组，而是对象
+        var fileList = document.getElementById('file').files;
+        if (!fileList.length) {
+            alert('请选择文件');
+            return;
+        }
+        var file = fileList[0];
+        var fileOriginalName = file.name;
+        let fileReader = new FileReader();
+        fileReader.readAsBinaryString(file);
+        fileReader.onload = function () {
+            // 生成一个随机的32为字符串作为对称密钥
+            let key = "" + CryptoJS.MD5(URL.createObjectURL(new Blob()));
+            const encData = aesEncrypt(key, btoa(fileReader.result));
+            encFile = new Blob([base64ToArrayBuffer(encData)])
+            uploadFile(fileOriginalName,encFile,key);
+            alert("本次传输对称密钥为：" + key)
+        };
+    }
+
+    function uploadFile(fileName,blog,key) {
+        var formData = new FormData();
+        formData.append('file', blog, fileName);//文件内容：blob
+        formData.append('key',rsaEncrypt(publicKey,key))
+        $.ajax({
+            type: 'POST',
+            url: "/upload",
+            data: formData,
+            processData: false,
+            contentType: false
+        }).done(function (data) {
+            //data: 服务器返回的数据
+            //TODO ......
+        });
+
+    }
+
+    function rsaEncrypt(publicKey,message) {
+        let jsEncrypt = new JSEncrypt();
+        if (message.length > 0 && publicKey.length > 0) {
+            jsEncrypt.setPublicKey(publicKey);
+            let encrypted = jsEncrypt.encrypt(message);
+            return encrypted;
+        }
+    }
+</script>
+</body>
+
+</html>
