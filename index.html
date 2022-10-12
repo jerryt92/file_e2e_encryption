@@ -1431,6 +1431,7 @@
     <div id='write' class=''><h1 id='端到端文件传输加密'><span>端到端文件传输加密</span></h1>
         <p><span>适用于没有HTTPS协议时的文件传输，如：个人家庭服务器</span></p>
         <p><span>使用SpringBoot</span></p>
+        <p><span>注：由于采用Base64对文件编码，且未引入分块上传机制，文件大小超过50MB可能会引起崩溃。</span></p>
         <p><a href='https://github.com/tianjingli/file_e2e_encryption'><svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
                                                                             data-view-component="true" class="octicon octicon-mark-github v-align-middle">
             <path fill-rule="evenodd"

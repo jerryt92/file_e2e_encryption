@@ -4,6 +4,8 @@
 
 使用SpringBoot
 
+注：由于采用Base64对文件编码，且未引入分块上传机制，文件大小超过50MB可能会引起崩溃。
+
 [GitHub](https://github.com/tianjingli/file_e2e_encryption)
 
 [Gitee](https://gitee.com/tianjingli/file_e2e_encryption)
