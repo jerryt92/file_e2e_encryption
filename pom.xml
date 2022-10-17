@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.tjl</groupId>
-    <artifactId>encrypt_file_trans</artifactId>
+    <artifactId>file_e2e_encryption</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>encrypt_file_trans</name>
-    <description>encrypt_file_trans</description>
+    <name>file_e2e_encryption</name>
+    <description>file_e2e_encryption</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -63,7 +63,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
                 <configuration>
-                    <mainClass>com.tjl.EncryptFileTransApplication</mainClass>
+                    <mainClass>com.tjl.RunApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>
