@@ -67,8 +67,7 @@
         let jsEncrypt = new JSEncrypt();
         if (message.length > 0 && publicKey.length > 0) {
             jsEncrypt.setPublicKey(publicKey);
-            let encrypted = jsEncrypt.encrypt(message);
-            return encrypted;
+            return jsEncrypt.encrypt(message);
         }
     }
 </script>
