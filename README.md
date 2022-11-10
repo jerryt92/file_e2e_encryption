@@ -8,8 +8,6 @@
 
 [GitHub](https://github.com/jerryt92/file_e2e_encryption)
 
-[Gitee](https://gitee.com/jerryt92/file_e2e_encryption)
-
 ## 过程介绍
 
 1. 从可靠来源（如：通过HTTPS访问的服务器）获取服务端的RSA公钥![1](assets/1.jpg)
